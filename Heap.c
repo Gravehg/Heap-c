@@ -140,3 +140,15 @@ void sift_down_heap(Heap *heap, int i){
         }
     }
 }
+
+int get_size_heap(Heap *heap){
+    return heap->size;
+}
+
+int is_empty_heap(Heap *heap){
+    return heap->size == 0;
+}
+
+int remove_root(Heap *heap){
+    return remove_heap_by_pos(heap, 0);
+}

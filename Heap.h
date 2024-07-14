@@ -29,8 +29,9 @@ void remove_heap(Heap *heap, int element);
 int is_leaf_heap(Heap *heap, int i);
 int get_size_heap(Heap *heap);
 int is_empty_heap(Heap *heap);
-int sift_down_heap(Heap *heap);
-int sift_up_heap(Heap *heap);
+int sift_down_heap(Heap *heap, int i);
+int sift_up_heap(Heap *heap, int i);
 int remove_heap(Heap *heap);
+void swap_heap_elements(Heap *heap, int pos1, int pos2);
 
 #endif

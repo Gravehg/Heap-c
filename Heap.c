@@ -42,3 +42,15 @@ int get_min(Heap *heap){
     }
     return heap->heap_elements[0];
 }
+
+
+int right_child_heap(int i){
+    return 2 * i + 2;
+}
+int left_child_heap(int i){
+    return 2 * i + 1;
+}
+
+int parent_heap(int i){
+    return (i - 1) / 2;
+}

@@ -73,3 +73,33 @@ int greater_child_heap(Heap *heap, int i){
         return right_child_heap(i);
     }
 }
+
+void insert_heap(Heap *heap, int element){
+    if(heap->size == heap->max_size){
+        printf("%s\n", "Reached maximum number of elements on this heap");
+    }
+    heap->heap_elements[heap->size] = element;
+    sift_up_heap(heap, heap->size);
+    heap->size++;
+}
+
+int sift_up_heap(Heap *heap, int i){
+    if(heap->type == MINHEAP){
+        while(i > 0 && heap->heap_elements[i] < heap->heap_elements[parent_heap(i)]){
+            swap_heap_elements(heap, i, parent_heap(i));
+            i = parent_heap(i);
+        }
+    }
+    if(heap->type == MAXHEAP){
+        while(i > 0 && heap->heap_elements[i] > heap->heap_elements[parent_heap(i)]){
+            swap_heap_elements(heap, i, parent_heap(i));
+            i = parent_heap(i);
+        }
+    }
+}
+
+void swap_heap_elements(Heap *heap, int pos1, int pos2){
+    int temp = heap->heap_elements[pos1];
+    heap->heap_elements[pos1] = heap->heap_elements[pos2];
+    heap->heap_elements[pos2] = temp;
+}

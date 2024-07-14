@@ -20,9 +20,9 @@ typedef struct Heap
 Heap *get_heap(TYPE_HEAP selected_type, int max_size);
 int get_max(Heap *heap);
 int get_min(Heap *heap);
-int right_child_heap(Heap *heap, int i);
-int left_child_heap(Heap *heap, int i);
-int parent_heap(Heap *heap, int i);
+int right_child_heap(int i);
+int left_child_heap(int i);
+int parent_heap(int i);
 int greater_child_heap(Heap *heap, int i);
 void insert_heap(Heap *heap, int element);
 void remove_heap(Heap *heap, int element);

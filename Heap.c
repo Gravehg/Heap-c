@@ -54,3 +54,22 @@ int left_child_heap(int i){
 int parent_heap(int i){
     return (i - 1) / 2;
 }
+
+int greater_child_heap(Heap *heap, int i){
+    if(i <0 || i>= heap->size){
+        printf("%s\n", "Can't get greater child of invalid position inside of heap!");
+        exit(EXIT_FAILURE);
+    }
+    if(heap->type == MINHEAP){
+        if(right_child_heap(i) >= heap->size || heap->heap_elements[left_child_heap(i)] < heap->heap_elements[right_child_heap(i)]){
+            return left_child_heap(i);
+        }
+        return right_child_heap(i);
+    }
+    if(heap->type ==MAXHEAP){
+        if(right_child_heap(i) >= heap->size || heap->heap_elements[left_child_heap(i)] > heap->heap_elements[right_child_heap(i)]){
+            return left_child_heap(i);
+        }
+        return right_child_heap(i);
+    }
+}

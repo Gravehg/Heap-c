@@ -103,3 +103,40 @@ void swap_heap_elements(Heap *heap, int pos1, int pos2){
     heap->heap_elements[pos1] = heap->heap_elements[pos2];
     heap->heap_elements[pos2] = temp;
 }
+
+int is_leaf_heap(Heap *heap, int i){
+    return left_child_heap(i) >= heap->size;
+}
+
+int remove_heap_by_pos(Heap *heap, int pos){
+    if(heap->size == 0){
+        printf("%s\n", "Can't remove element from empty heap!");
+        exit(EXIT_FAILURE);
+    }
+    if(pos < 0 || pos >= heap->size){
+        printf("%s\n", "Can't remove element from invalid position");
+        exit(EXIT_FAILURE);
+    }
+    swap_heap_elements(heap, pos, heap->size - 1);
+    heap->size--;
+    if(heap->size  > 1)
+        sift_down_heap(heap, pos);
+    return heap->heap_elements[heap->size];
+}
+
+void sift_down_heap(Heap *heap, int i){
+    if(heap->type == MINHEAP){
+        while(!is_leaf_heap(heap,i) && heap->heap_elements[i] > heap->heap_elements[greater_child_heap(heap,i)]){
+            int gChild = greater_child_heap(heap, i);
+            swap_heap_elements(heap, i, gChild);
+            i = gChild;
+        }
+    }
+    if(heap->type == MAXHEAP){
+        while(!is_leaf_heap(heap,i) && heap->heap_elements[i] < heap->heap_elements[greater_child_heap(heap,i)]){
+            int gChild = greater_child_heap(heap, i);
+            swap_heap_elements(heap, i, gChild);
+            i = gChild;
+        }
+    }
+}
